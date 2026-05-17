@@ -26,7 +26,7 @@ A mobile application built with Android Studio that helps Malaysian users estima
 
 **Khaulah Kareema Binti Sofian**
 - Matric No: 2025101461
-- Course:ICT602- Mobile Technology and Development 
+- Course: ICT602- Mobile Technology and Development 
 
 ---
 
