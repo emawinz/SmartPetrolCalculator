@@ -59,6 +59,13 @@
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp">
 
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/ic_local_gas_station"
+                    app:tint="@color/dark_blue"
+                    android:layout_marginEnd="10dp" />
+
                 <Spinner
                     android:id="@+id/spinnerPetrolType"
                     android:layout_width="0dp"
@@ -154,6 +161,13 @@
                 android:gravity="center_vertical"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/ic_local_gas_station"
+                    app:tint="@color/dark_blue"
+                    android:layout_marginEnd="10dp" />
 
                 <EditText
                     android:id="@+id/etFuelUsage"
