@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Dark Blue -->
+    <color name="dark_blue">#0F172A</color>
+
+    <!-- Blue Accent -->
+    <color name="blue_accent">#1E3A8A</color>
+
+    <!-- Light Blue -->
+    <color name="light_blue">#DBEAFE</color>
+
+    <!-- White -->
+    <color name="white">#FFFFFF</color>
+
+    <!-- Background -->
+    <color name="background">#F8FAFC</color>
+
+    <!-- Text -->
+    <color name="text_dark">#1E293B</color>
+    <color name="text_gray">#64748B</color>
+
+    <!-- Border -->
+    <color name="border_gray">#CBD5E1</color>
+
+</resources>
