@@ -57,9 +57,10 @@ public class HomeFragment extends Fragment {
         btnCalculate.setOnClickListener(v -> {
 
             String petrolType = spinnerPetrolType.getSelectedItem().toString();
-            String priceText = etPrice.getText().toString();
-            String fuelText = etFuelUsage.getText().toString();
+            String priceText = etPrice.getText().toString().trim();
+            String fuelText = etFuelUsage.getText().toString().trim();
 
+            // Validate empty
             if (priceText.isEmpty() || fuelText.isEmpty()) {
                 Toast.makeText(requireContext(),
                         "Please fill all input fields",
@@ -67,8 +68,36 @@ public class HomeFragment extends Fragment {
                 return;
             }
 
-            double pricePerLiter = Double.parseDouble(priceText);
-            double fuelUsage = Double.parseDouble(fuelText);
+            // Validate not just a dot
+            if (priceText.equals(".") || fuelText.equals(".")) {
+                Toast.makeText(requireContext(),
+                        "Please enter valid numbers",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            double pricePerLiter;
+            double fuelUsage;
+
+            // Catch any invalid number format
+            try {
+                pricePerLiter = Double.parseDouble(priceText);
+                fuelUsage = Double.parseDouble(fuelText);
+            } catch (NumberFormatException e) {
+                Toast.makeText(requireContext(),
+                        "Please enter valid numbers",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate not zero
+            if (pricePerLiter <= 0 || fuelUsage <= 0) {
+                Toast.makeText(requireContext(),
+                        "Please enter values greater than 0",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             double totalPetrolCost = fuelUsage * pricePerLiter;
 
             double budiRebate = 0.00;
@@ -93,19 +122,16 @@ public class HomeFragment extends Fragment {
         Dialog dialog = new Dialog(requireContext());
         dialog.setContentView(R.layout.dialog_receipt);
 
-        // Make dialog width full screen with margins
         dialog.getWindow().setLayout(
                 (int) (getResources().getDisplayMetrics().widthPixels * 0.92),
                 ViewGroup.LayoutParams.WRAP_CONTENT
         );
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
-        // Get current date and time
         String dateTime = new SimpleDateFormat(
                 "dd MMM yyyy  •  hh:mm a", Locale.getDefault()
         ).format(new Date());
 
-        // Fill in receipt fields
         ((TextView) dialog.findViewById(R.id.tvReceiptDate)).setText(dateTime);
         ((TextView) dialog.findViewById(R.id.tvPetrolType)).setText(petrolType);
         ((TextView) dialog.findViewById(R.id.tvPricePerLitre))
@@ -119,7 +145,6 @@ public class HomeFragment extends Fragment {
         ((TextView) dialog.findViewById(R.id.tvFinalPayable))
                 .setText(String.format("RM %.2f", finalPayable));
 
-        // Close button
         dialog.findViewById(R.id.btnCloseReceipt).setOnClickListener(v -> dialog.dismiss());
 
         dialog.show();
